@@ -20,11 +20,24 @@ public class Employee {
     @Column(name = "email")
     private String email;
 
-    public Employee(String name, int age, int employeeNo, String email) {
+    @ManyToOne
+    @JoinColumn(name = "department_id", nullable = false)
+    private Department department;
+
+////           name = "projects_employees",
+//           joinColumns = {@JoinColumn(
+//                   name = "employee_id",
+//                   nullable = false,
+//                   updatable = false)
+//           })
+
+
+    public Employee(String name, int age, int employeeNo, String email, Department department) {
         this.name = name;
         this.age = age;
         this.employeeNo = employeeNo;
         this.email = email;
+        this.department = department;
     }
 
     public Employee(){
@@ -69,5 +82,13 @@ public class Employee {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Department getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(Department department) {
+        this.department = department;
     }
 }
